@@ -1,0 +1,14 @@
+#my first calculator project on github
+x=int(input("enter your first number"))
+y=int(input("enter you second number"))
+op=input("enter operations you want like(+,-,*,/)")
+if op=="+":
+  print("x+y=",x+y)
+elif op=="-":
+  print("x-y=",x-y)
+elif op==*:
+  print("x*y=",x*y)
+elif op==/:
+  print("x/y=",x/y)
+else:
+  print("wrong operator used")
