@@ -6,9 +6,9 @@ if op=="+":
   print("x+y=",x+y)
 elif op=="-":
   print("x-y=",x-y)
-elif op==*:
+elif op=="*":
   print("x*y=",x*y)
-elif op==/:
+elif op=="/":
   print("x/y=",x/y)
 else:
   print("wrong operator used")
