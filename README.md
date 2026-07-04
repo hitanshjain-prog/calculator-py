@@ -11,5 +11,5 @@ along with power, modulus, floor division, square root, and logarithm operations
 
 ## How to Run
 1. Make sure Python 3 is installed on your system.
-2. Clone this repository: 
+2. Clone this repository: https://github.com/hitanshjain-prog/calculator-py
 
