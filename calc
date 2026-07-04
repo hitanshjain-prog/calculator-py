@@ -1,14 +1,98 @@
-#my first calculator project on github
-x=int(input("enter your first number"))
-y=int(input("enter you second number"))
-op=input("enter operations you want like(+,-,*,/)")
-if op=="+":
-  print("x+y=",x+y)
-elif op=="-":
-  print("x-y=",x-y)
-elif op=="*":
-  print("x*y=",x*y)
-elif op=="/":
-  print("x/y=",x/y)
-else:
-  print("wrong operator used")
+import math
+
+
+SUPPORTED_OPERATIONS = {
+    '+': 'addition',
+    '-': 'subtraction',
+    '*': 'multiplication',
+    '/': 'division',
+    '**': 'power',
+    '%': 'modulus',
+    '//': 'floor division',
+    'sqrt': 'square root',
+    'pow': 'power',
+    'log': 'logarithm',
+}
+
+
+def calculate(first_number, second_number, operation):
+    operation = operation.strip()
+
+    if operation == '+':
+        return first_number + second_number
+    if operation == '-':
+        return first_number - second_number
+    if operation == '*':
+        return first_number * second_number
+    if operation == '/':
+        if second_number == 0:
+            return "Error: Division by zero"
+        return first_number / second_number
+    if operation == '**':
+        return first_number ** second_number
+    if operation == '%':
+        if second_number == 0:
+            return "Error: Division by zero"
+        return first_number % second_number
+    if operation == '//':
+        if second_number == 0:
+            return "Error: Division by zero"
+        return first_number // second_number
+    if operation == 'sqrt':
+        if first_number < 0:
+            return "Error: Cannot take sqrt of a negative number"
+        return math.sqrt(first_number)
+    if operation == 'pow':
+        return pow(first_number, second_number)
+    if operation == 'log':
+        if first_number <= 0 or second_number <= 0 or second_number == 1:
+            return "Error: Invalid input"
+        return math.log(first_number, second_number)
+
+    return "Error: Invalid operation"
+
+
+def prompt_number(prompt):
+    while True:
+        value = input(prompt).strip()
+        if value.lower() in {'q', 'quit', 'exit'}:
+            raise SystemExit
+        try:
+            return float(value)
+        except ValueError:
+            print("Please enter a valid number.")
+
+
+def run_cli():
+    print("Simple Calculator")
+    print("Supported operations: +, -, *, /, **, %, //, sqrt, pow, log")
+
+    while True:
+        try:
+            first_number = prompt_number("Enter first number: ")
+        except SystemExit:
+            print("Goodbye!")
+            return
+
+        operation = input("Enter operation: ").strip()
+
+        if operation == 'sqrt':
+            result = calculate(first_number, 0, operation)
+            print(f"Result: {result}")
+        else:
+            try:
+                second_number = prompt_number("Enter second number: ")
+            except SystemExit:
+                print("Goodbye!")
+                return
+            result = calculate(first_number, second_number, operation)
+            print(f"Result: {result}")
+
+        again = input("Would you like to perform another calculation? (y/n): ").strip().lower()
+        if again not in {'', 'y', 'yes'}:
+            print("Goodbye!")
+            return
+
+
+if __name__ == '__main__':
+    run_cli()
